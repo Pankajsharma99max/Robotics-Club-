@@ -25,6 +25,10 @@ const userSchema = new mongoose.Schema({
     enum: ['Admin', 'Editor'],
     default: 'Editor'
   },
+  profilePicture: {
+    type: String,
+    default: null
+  },
   createdAt: {
     type: Date,
     default: Date.now

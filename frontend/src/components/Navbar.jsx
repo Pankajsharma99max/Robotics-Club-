@@ -3,12 +3,14 @@ import { Link, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { FaBars, FaTimes } from 'react-icons/fa';
 import { settingsService } from '../services/contentService';
+import { useAuth } from '../hooks/useAuth';
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [scrolled, setScrolled] = useState(false);
     const [logo, setLogo] = useState('/logo_v2.png');
     const location = useLocation();
+    const { user, isAuthenticated } = useAuth();
 
     useEffect(() => {
         const handleScroll = () => {
@@ -77,18 +79,40 @@ const Navbar = () => {
                             </Link>
                         ))}
                         <div className="flex items-center space-x-4 ml-4 border-l border-gray-700 pl-4">
-                            <Link
-                                to="/login"
-                                className="text-gray-300 hover:text-neon-blue font-medium transition-colors"
-                            >
-                                Login
-                            </Link>
-                            <Link
-                                to="/signup"
-                                className="btn-neon px-5 py-2 rounded-lg text-sm"
-                            >
-                                Sign Up
-                            </Link>
+                            {isAuthenticated ? (
+                                <Link
+                                    to="/profile"
+                                    className="flex items-center space-x-2 text-gray-300 hover:text-purple-400 font-medium transition-colors"
+                                >
+                                    {user?.profilePicture ? (
+                                        <img
+                                            src={`${import.meta.env.VITE_API_URL.replace('/api', '')}${user.profilePicture}`}
+                                            alt="Profile"
+                                            className="w-8 h-8 rounded-full border-2 border-purple-500"
+                                        />
+                                    ) : (
+                                        <div className="w-8 h-8 rounded-full bg-gradient-to-br from-purple-600 to-pink-600 flex items-center justify-center text-white font-bold text-sm">
+                                            {user?.username?.charAt(0).toUpperCase()}
+                                        </div>
+                                    )}
+                                    <span>Profile</span>
+                                </Link>
+                            ) : (
+                                <>
+                                    <Link
+                                        to="/login"
+                                        className="text-gray-300 hover:text-purple-400 font-medium transition-colors"
+                                    >
+                                        Login
+                                    </Link>
+                                    <Link
+                                        to="/signup"
+                                        className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-500 hover:to-pink-500 px-5 py-2 rounded-lg text-sm font-semibold transition-all"
+                                    >
+                                        Sign Up
+                                    </Link>
+                                </>
+                            )}
                         </div>
                     </div>
 
@@ -102,45 +126,47 @@ const Navbar = () => {
                 </div>
 
                 {/* Mobile Menu */}
-                {isOpen && (
-                    <motion.div
-                        initial={{ opacity: 0, y: -20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        className="md:hidden mt-4 glass-card rounded-lg p-4"
-                    >
-                        {navLinks.map((link) => (
-                            <Link
-                                key={link.path}
-                                to={link.path}
-                                onClick={() => setIsOpen(false)}
-                                className={`block py-3 font-medium transition-all duration-300 ${location.pathname === link.path
-                                    ? 'neon-text-purple'
-                                    : 'text-gray-300 hover:text-neon-purple'
-                                    }`}
-                            >
-                                {link.name}
-                            </Link>
-                        ))}
-                        <div className="mt-4 pt-4 border-t border-gray-700 flex flex-col space-y-3">
-                            <Link
-                                to="/login"
-                                onClick={() => setIsOpen(false)}
-                                className="block text-center text-gray-300 hover:text-neon-blue font-medium"
-                            >
-                                Login
-                            </Link>
-                            <Link
-                                to="/signup"
-                                onClick={() => setIsOpen(false)}
-                                className="block btn-neon px-6 py-2 rounded-lg text-center"
-                            >
-                                Sign Up
-                            </Link>
-                        </div>
-                    </motion.div>
-                )}
-            </div>
-        </nav>
+                {
+                    isOpen && (
+                        <motion.div
+                            initial={{ opacity: 0, y: -20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            className="md:hidden mt-4 glass-card rounded-lg p-4"
+                        >
+                            {navLinks.map((link) => (
+                                <Link
+                                    key={link.path}
+                                    to={link.path}
+                                    onClick={() => setIsOpen(false)}
+                                    className={`block py-3 font-medium transition-all duration-300 ${location.pathname === link.path
+                                        ? 'neon-text-purple'
+                                        : 'text-gray-300 hover:text-neon-purple'
+                                        }`}
+                                >
+                                    {link.name}
+                                </Link>
+                            ))}
+                            <div className="mt-4 pt-4 border-t border-gray-700 flex flex-col space-y-3">
+                                <Link
+                                    to="/login"
+                                    onClick={() => setIsOpen(false)}
+                                    className="block text-center text-gray-300 hover:text-neon-blue font-medium"
+                                >
+                                    Login
+                                </Link>
+                                <Link
+                                    to="/signup"
+                                    onClick={() => setIsOpen(false)}
+                                    className="block btn-neon px-6 py-2 rounded-lg text-center"
+                                >
+                                    Sign Up
+                                </Link>
+                            </div>
+                        </motion.div>
+                    )
+                }
+            </div >
+        </nav >
     );
 };
 

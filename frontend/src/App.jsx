@@ -15,6 +15,7 @@ import UpcomingEvents from './pages/UpcomingEvents';
 import Contact from './pages/Contact';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
+import Profile from './pages/Profile';
 
 // Admin pages
 import AdminLogin from './admin/Login';
@@ -48,6 +49,13 @@ function App() {
 
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
+          <Route path="/profile" element={
+            <>
+              <Navbar />
+              <Profile />
+              <Footer />
+            </>
+          } />
 
           <Route path="/events" element={
             <>

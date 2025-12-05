@@ -114,3 +114,58 @@ export const updatePassword = async (req, res) => {
         res.status(500).json({ message: error.message });
     }
 };
+
+// @desc    Update user profile
+// @route   PUT /api/auth/profile
+// @access  Private
+export const updateProfile = async (req, res) => {
+    try {
+        const { username, email } = req.body;
+        const user = await User.findById(req.user._id);
+
+        if (!user) {
+            return res.status(404).json({ message: 'User not found' });
+        }
+
+        // Check if username or email is already taken by another user
+        if (username && username !== user.username) {
+            const usernameExists = await User.findOne({ username, _id: { $ne: user._id } });
+            if (usernameExists) {
+                return res.status(400).json({ message: 'Username already taken' });
+            }
+            user.username = username;
+        }
+
+        if (email && email !== user.email) {
+            const emailExists = await User.findOne({ email, _id: { $ne: user._id } });
+            if (emailExists) {
+                return res.status(400).json({ message: 'Email already taken' });
+            }
+            user.email = email;
+        }
+
+        // Handle profile picture if uploaded
+        if (req.file) {
+            const { compressImage, saveImage, deleteImage } = await import('../utils/imageUtils.js');
+
+            // Delete old profile picture if exists
+            if (user.profilePicture) {
+                await deleteImage(user.profilePicture);
+            }
+
+            // Compress and save new profile picture
+            const { buffer, filename } = await compressImage(req.file.buffer, req.file.originalname);
+            const imagePath = await saveImage(buffer, filename, 'profiles');
+            user.profilePicture = imagePath;
+        }
+
+        await user.save();
+
+        // Return user without password
+        const updatedUser = await User.findById(user._id).select('-password');
+        res.json(updatedUser);
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+};
+
