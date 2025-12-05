@@ -5,15 +5,15 @@ import { FaHome, FaCalendar, FaUsers, FaTrophy, FaImages, FaCog, FaBullhorn, FaS
 import { useAuth } from '../hooks/useAuth';
 
 const AdminLayout = () => {
-    const { user, isAuthenticated, logout } = useAuth();
+    const { user, isAuthenticated, loading, logout } = useAuth();
     const navigate = useNavigate();
     const location = useLocation();
 
     useEffect(() => {
-        if (!isAuthenticated) {
+        if (!loading && !isAuthenticated) {
             navigate('/admin/login');
         }
-    }, [isAuthenticated, navigate]);
+    }, [isAuthenticated, loading, navigate]);
 
     const handleLogout = () => {
         logout();
@@ -30,6 +30,14 @@ const AdminLayout = () => {
         { name: 'Announcements', path: '/admin/announcements', icon: FaBullhorn },
         { name: 'Settings', path: '/admin/settings', icon: FaCog },
     ];
+
+    if (loading) {
+        return (
+            <div className="min-h-screen flex items-center justify-center bg-black">
+                <div className="animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-neon-blue"></div>
+            </div>
+        );
+    }
 
     if (!isAuthenticated) {
         return null;
@@ -57,8 +65,8 @@ const AdminLayout = () => {
                                 key={item.path}
                                 to={item.path}
                                 className={`flex items-center space-x-3 px-4 py-3 rounded-lg transition-all ${isActive
-                                        ? 'bg-neon-blue/20 text-neon-blue neon-glow-blue'
-                                        : 'text-gray-400 hover:bg-neon-purple/10 hover:text-neon-purple'
+                                    ? 'bg-neon-blue/20 text-neon-blue neon-glow-blue'
+                                    : 'text-gray-400 hover:bg-neon-purple/10 hover:text-neon-purple'
                                     }`}
                             >
                                 <Icon size={20} />

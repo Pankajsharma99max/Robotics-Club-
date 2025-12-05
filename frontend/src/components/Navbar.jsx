@@ -2,10 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { FaBars, FaTimes } from 'react-icons/fa';
+import { settingsService } from '../services/contentService';
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [scrolled, setScrolled] = useState(false);
+    const [logo, setLogo] = useState('/logo_v2.png');
     const location = useLocation();
 
     useEffect(() => {
@@ -13,8 +15,25 @@ const Navbar = () => {
             setScrolled(window.scrollY > 50);
         };
         window.addEventListener('scroll', handleScroll);
+        loadSettings();
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
+
+    const loadSettings = async () => {
+        try {
+            const settings = await settingsService.get();
+            if (settings.logo) {
+                // If logo is a relative path (uploaded), prepend backend URL
+                // If it's an absolute URL (external), use as is
+                const logoUrl = settings.logo.startsWith('http')
+                    ? settings.logo
+                    : `${import.meta.env.VITE_API_URL.replace('/api', '')}${settings.logo}`;
+                setLogo(logoUrl);
+            }
+        } catch (error) {
+            console.error('Failed to load settings:', error);
+        }
+    };
 
     const navLinks = [
         { name: 'Home', path: '/' },
@@ -36,9 +55,13 @@ const Navbar = () => {
                         <motion.img
                             whileHover={{ scale: 1.05 }}
                             transition={{ duration: 0.3 }}
-                            src="/logo_v2.png"
+                            src={logo}
                             alt="Robotics Club Logo"
                             className="h-16 w-auto object-contain"
+                            onError={(e) => {
+                                e.target.onerror = null;
+                                e.target.src = '/logo_v2.png';
+                            }}
                         />
                     </Link>
 
