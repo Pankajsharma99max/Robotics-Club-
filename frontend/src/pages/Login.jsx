@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { useAuth } from '../hooks/useAuth';
 import ParticleSphere from '../components/ParticleSphere';
 
-const AdminLogin = () => {
+const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
@@ -19,7 +19,7 @@ const AdminLogin = () => {
 
         try {
             await login(email, password);
-            navigate('/admin');
+            navigate('/admin'); // Redirect to dashboard or home based on role
         } catch (err) {
             setError(err.response?.data?.message || 'Login failed. Please check your credentials.');
         } finally {
@@ -29,10 +29,8 @@ const AdminLogin = () => {
 
     return (
         <div className="relative min-h-screen flex items-center justify-center overflow-hidden">
-            {/* Background Animation */}
             <ParticleSphere />
 
-            {/* Login Form Overlay */}
             <motion.div
                 initial={{ opacity: 0, scale: 0.9, y: 20 }}
                 animate={{ opacity: 1, scale: 1, y: 0 }}
@@ -44,7 +42,7 @@ const AdminLogin = () => {
                         <h1 className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600 mb-2">
                             Welcome Back
                         </h1>
-                        <p className="text-gray-400 text-sm">Enter your credentials to access the admin portal</p>
+                        <p className="text-gray-400 text-sm">Sign in to continue to Robotics Club</p>
                     </div>
 
                     {error && (
@@ -66,7 +64,7 @@ const AdminLogin = () => {
                                 onChange={(e) => setEmail(e.target.value)}
                                 required
                                 className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500 transition-all text-white placeholder-gray-500"
-                                placeholder="admin@roboticsclub.com"
+                                placeholder="name@example.com"
                             />
                         </div>
 
@@ -87,23 +85,16 @@ const AdminLogin = () => {
                             disabled={loading}
                             className="w-full py-3.5 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-500 hover:to-pink-500 text-white font-semibold rounded-xl transition-all transform hover:scale-[1.02] active:scale-[0.98] shadow-lg shadow-purple-500/25 disabled:opacity-50 disabled:cursor-not-allowed"
                         >
-                            {loading ? (
-                                <span className="flex items-center justify-center gap-2">
-                                    <svg className="animate-spin h-5 w-5" viewBox="0 0 24 24">
-                                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
-                                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
-                                    </svg>
-                                    Authenticating...
-                                </span>
-                            ) : (
-                                'Sign In'
-                            )}
+                            {loading ? 'Authenticating...' : 'Sign In'}
                         </button>
                     </form>
 
                     <div className="mt-8 text-center">
-                        <p className="text-gray-500 text-xs">
-                            Protected by Robotics Club Security System
+                        <p className="text-gray-400 text-sm">
+                            Don't have an account?{' '}
+                            <Link to="/signup" className="text-purple-400 hover:text-purple-300 font-medium transition-colors">
+                                Sign up
+                            </Link>
                         </p>
                     </div>
                 </div>
@@ -112,4 +103,4 @@ const AdminLogin = () => {
     );
 };
 
-export default AdminLogin;
+export default Login;

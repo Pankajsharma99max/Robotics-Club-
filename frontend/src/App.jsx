@@ -13,6 +13,8 @@ import Gallery from './pages/Gallery';
 import Achievements from './pages/Achievements';
 import UpcomingEvents from './pages/UpcomingEvents';
 import Contact from './pages/Contact';
+import Login from './pages/Login';
+import Signup from './pages/Signup';
 
 // Admin pages
 import AdminLogin from './admin/Login';
@@ -43,6 +45,9 @@ function App() {
               <Footer />
             </>
           } />
+
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
 
           <Route path="/events" element={
             <>

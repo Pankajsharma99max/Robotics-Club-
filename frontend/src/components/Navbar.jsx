@@ -56,12 +56,20 @@ const Navbar = () => {
                                 {link.name}
                             </Link>
                         ))}
-                        <Link
-                            to="/upcoming"
-                            className="btn-neon px-6 py-2 rounded-lg"
-                        >
-                            Upcoming
-                        </Link>
+                        <div className="flex items-center space-x-4 ml-4 border-l border-gray-700 pl-4">
+                            <Link
+                                to="/login"
+                                className="text-gray-300 hover:text-neon-blue font-medium transition-colors"
+                            >
+                                Login
+                            </Link>
+                            <Link
+                                to="/signup"
+                                className="btn-neon px-5 py-2 rounded-lg text-sm"
+                            >
+                                Sign Up
+                            </Link>
+                        </div>
                     </div>
 
                     {/* Mobile Menu Button */}
@@ -93,13 +101,22 @@ const Navbar = () => {
                                 {link.name}
                             </Link>
                         ))}
-                        <Link
-                            to="/upcoming"
-                            onClick={() => setIsOpen(false)}
-                            className="block mt-4 btn-neon px-6 py-2 rounded-lg text-center"
-                        >
-                            Upcoming Events
-                        </Link>
+                        <div className="mt-4 pt-4 border-t border-gray-700 flex flex-col space-y-3">
+                            <Link
+                                to="/login"
+                                onClick={() => setIsOpen(false)}
+                                className="block text-center text-gray-300 hover:text-neon-blue font-medium"
+                            >
+                                Login
+                            </Link>
+                            <Link
+                                to="/signup"
+                                onClick={() => setIsOpen(false)}
+                                className="block btn-neon px-6 py-2 rounded-lg text-center"
+                            >
+                                Sign Up
+                            </Link>
+                        </div>
                     </motion.div>
                 )}
             </div>
