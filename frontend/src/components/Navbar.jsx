@@ -52,28 +52,25 @@ const Navbar = () => {
                 <div className="flex items-center justify-between">
                     {/* Logo */}
                     <Link to="/" className="flex items-center space-x-2">
-                        <motion.img
+                        <motion.div
                             whileHover={{ scale: 1.05 }}
                             transition={{ duration: 0.3 }}
-                            src={logo}
-                            alt="Robotics Club Logo"
-                            className="h-16 w-auto object-contain"
-                            onError={(e) => {
-                                e.target.onerror = null;
-                                e.target.src = '/logo_v2.png';
-                            }}
-                        />
+                            className="text-2xl font-bold"
+                        >
+                            <span className="text-orange-500">Robotics</span>
+                            <span className="text-blue-500">Club</span>
+                        </motion.div>
                     </Link>
 
                     {/* Desktop Menu */}
-                    <div className="hidden md:flex items-center space-x-8">
+                    <div className="hidden md:flex items-center space-x-8 ml-12">
                         {navLinks.map((link) => (
                             <Link
                                 key={link.path}
                                 to={link.path}
                                 className={`font-medium transition-all duration-300 ${location.pathname === link.path
-                                    ? 'neon-text-blue'
-                                    : 'text-gray-300 hover:text-neon-blue'
+                                    ? 'neon-text-purple'
+                                    : 'text-gray-300 hover:text-neon-purple'
                                     }`}
                             >
                                 {link.name}
@@ -117,8 +114,8 @@ const Navbar = () => {
                                 to={link.path}
                                 onClick={() => setIsOpen(false)}
                                 className={`block py-3 font-medium transition-all duration-300 ${location.pathname === link.path
-                                    ? 'neon-text-blue'
-                                    : 'text-gray-300 hover:text-neon-blue'
+                                    ? 'neon-text-purple'
+                                    : 'text-gray-300 hover:text-neon-purple'
                                     }`}
                             >
                                 {link.name}

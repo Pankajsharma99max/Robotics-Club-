@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { homeService, announcementService } from '../services/contentService';
 import { useCursorParallax } from '../hooks/useCursorParallax';
 import ScrollingRobot from '../components/ScrollingRobot';
+import PurpleGalaxySphere from '../components/PurpleGalaxySphere';
 
 const Home = () => {
     const [homeContent, setHomeContent] = useState(null);
@@ -31,29 +32,27 @@ const Home = () => {
         <div className="min-h-screen pt-20">
             <ScrollingRobot />
             {/* Hero Section */}
-            <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-                <div className="container mx-auto px-4 text-center z-10">
-                    <motion.div
-                        ref={heroRef}
-                        initial={{ opacity: 0, y: 50 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 1 }}
-                    >
-                        <h1 className="font-display text-6xl md:text-8xl font-bold mb-6 text-white">
-                            {homeContent?.heroTitle || 'ROBOTICS CLUB'}
-                        </h1>
-                        <p className="text-xl md:text-2xl text-gray-300 mb-8">
-                            {homeContent?.heroSubtitle || 'Building the Future with Innovation'}
-                        </p>
-                        <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                            <Link to="/contact" className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-lg text-lg transition-colors">
-                                Join Us
-                            </Link>
-                            <Link to="/events" className="bg-purple-600 hover:bg-purple-700 text-white px-8 py-4 rounded-lg text-lg transition-colors">
-                                Explore Events
-                            </Link>
-                        </div>
-                    </motion.div>
+            <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-b from-dark-bg via-purple-900/10 to-dark-bg">
+                {/* Purple Galaxy Sphere with Animated Text */}
+                <PurpleGalaxySphere />
+
+                <div className="container mx-auto px-4 text-center z-10 relative">
+                </div>
+
+                {/* Starfield Background */}
+                <div className="absolute inset-0 overflow-hidden">
+                    {[...Array(100)].map((_, i) => (
+                        <div
+                            key={i}
+                            className="absolute w-1 h-1 bg-white rounded-full animate-pulse"
+                            style={{
+                                left: `${Math.random() * 100}%`,
+                                top: `${Math.random() * 100}%`,
+                                animationDelay: `${Math.random() * 3}s`,
+                                opacity: Math.random() * 0.7 + 0.3
+                            }}
+                        />
+                    ))}
                 </div>
 
                 {/* Grid Pattern */}
@@ -133,7 +132,7 @@ const Home = () => {
                         <p className="text-xl text-gray-300 mb-8">
                             Become a part of our innovative community and shape the future of robotics
                         </p>
-                        <Link to="/contact" className="bg-blue-600 hover:bg-blue-700 text-white px-12 py-4 rounded-lg text-lg inline-block transition-colors">
+                        <Link to="/contact" className="bg-purple-600 hover:bg-purple-700 text-white px-12 py-4 rounded-lg text-lg inline-block transition-colors">
                             Get Started
                         </Link>
                     </div>

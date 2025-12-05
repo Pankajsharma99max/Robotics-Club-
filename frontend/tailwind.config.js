@@ -7,9 +7,9 @@ export default {
     theme: {
         extend: {
             colors: {
-                'neon-blue': '#00f0ff',
-                'neon-purple': '#b000ff',
-                'neon-pink': '#ff00ff',
+                'neon-purple': '#a855f7',
+                'neon-violet': '#8b5cf6',
+                'neon-pink': '#d946ef',
                 'dark-bg': '#0a0a0f',
                 'dark-surface': '#1a1a2e',
                 'dark-card': '#16213e',

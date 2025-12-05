@@ -75,7 +75,7 @@ const Achievements = () => {
                                     </p>
 
                                     <div className="flex flex-wrap gap-2 mb-4">
-                                        <span className="px-3 py-1 rounded-full bg-blue-500/20 text-blue-400 text-xs font-semibold flex items-center gap-1">
+                                        <span className="px-3 py-1 rounded-full bg-purple-500/20 text-purple-400 text-xs font-semibold flex items-center gap-1">
                                             <FaMedal /> {achievement.category}
                                         </span>
                                     </div>

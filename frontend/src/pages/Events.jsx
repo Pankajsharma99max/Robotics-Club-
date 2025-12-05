@@ -66,9 +66,9 @@ const Events = () => {
                                         <h3 className="font-display text-2xl font-bold text-white mb-2">
                                             {event.title}
                                         </h3>
-                                        <span className={`px-3 py-1 rounded-full text-xs font-semibold ${event.status === 'Upcoming' ? 'bg-blue-500/20 text-blue-400' :
-                                                event.status === 'Ongoing' ? 'bg-green-500/20 text-green-400' :
-                                                    'bg-gray-500/20 text-gray-400'
+                                        <span className={`px-3 py-1 rounded-full text-xs font-semibold ${event.status === 'Upcoming' ? 'bg-purple-500/20 text-purple-400' :
+                                            event.status === 'Ongoing' ? 'bg-green-500/20 text-green-400' :
+                                                'bg-gray-500/20 text-gray-400'
                                             }`}>
                                             {event.status}
                                         </span>
@@ -94,7 +94,7 @@ const Events = () => {
                                             href={event.registrationLink}
                                             target="_blank"
                                             rel="noopener noreferrer"
-                                            className="block w-full text-center bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-lg transition-colors font-semibold"
+                                            className="block w-full text-center bg-purple-600 hover:bg-purple-700 text-white py-3 rounded-lg transition-colors font-semibold"
                                         >
                                             Register Now
                                         </a>

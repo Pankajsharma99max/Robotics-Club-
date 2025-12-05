@@ -5,9 +5,9 @@
 @tailwind utilities;
 
 :root {
-  --neon-blue: #00f0ff;
-  --neon-purple: #b000ff;
-  --neon-pink: #ff00ff;
+  --neon-purple: #a855f7;
+  --neon-violet: #8b5cf6;
+  --neon-pink: #d946ef;
   --dark-bg: #0a0a0f;
   --dark-surface: #1a1a2e;
   --dark-card: #16213e;
@@ -28,7 +28,12 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: 'Orbitron', sans-serif;
 }
 
@@ -44,40 +49,40 @@ h1, h2, h3, h4, h5, h6 {
   background: rgba(22, 33, 62, 0.4);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(0, 240, 255, 0.2);
-  box-shadow: 0 8px 32px 0 rgba(0, 240, 255, 0.1);
+  border: 1px solid rgba(168, 85, 247, 0.2);
+  box-shadow: 0 8px 32px 0 rgba(168, 85, 247, 0.1);
 }
 
 .glass-card:hover {
-  border-color: rgba(0, 240, 255, 0.4);
-  box-shadow: 0 8px 32px 0 rgba(0, 240, 255, 0.2);
+  border-color: rgba(168, 85, 247, 0.4);
+  box-shadow: 0 8px 32px 0 rgba(168, 85, 247, 0.2);
 }
 
 /* Neon glow effects */
 .neon-glow-blue {
   box-shadow: 0 0 10px var(--neon-blue),
-              0 0 20px var(--neon-blue),
-              0 0 30px var(--neon-blue);
+    0 0 20px var(--neon-blue),
+    0 0 30px var(--neon-blue);
 }
 
 .neon-glow-purple {
   box-shadow: 0 0 10px var(--neon-purple),
-              0 0 20px var(--neon-purple),
-              0 0 30px var(--neon-purple);
+    0 0 20px var(--neon-purple),
+    0 0 30px var(--neon-purple);
 }
 
 .neon-text-blue {
   color: var(--neon-blue);
   text-shadow: 0 0 10px var(--neon-blue),
-               0 0 20px var(--neon-blue),
-               0 0 30px var(--neon-blue);
+    0 0 20px var(--neon-blue),
+    0 0 30px var(--neon-blue);
 }
 
 .neon-text-purple {
   color: var(--neon-purple);
   text-shadow: 0 0 10px var(--neon-purple),
-               0 0 20px var(--neon-purple),
-               0 0 30px var(--neon-purple);
+    0 0 20px var(--neon-purple),
+    0 0 30px var(--neon-purple);
 }
 
 /* Neon border animation */
@@ -85,7 +90,7 @@ h1, h2, h3, h4, h5, h6 {
   position: relative;
   border: 2px solid transparent;
   background: linear-gradient(var(--dark-card), var(--dark-card)) padding-box,
-              linear-gradient(45deg, var(--neon-blue), var(--neon-purple)) border-box;
+    linear-gradient(45deg, var(--neon-blue), var(--neon-purple)) border-box;
 }
 
 .neon-border-animated {
@@ -114,9 +119,17 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 @keyframes glowing {
-  0% { background-position: 0 0; }
-  50% { background-position: 400% 0; }
-  100% { background-position: 0 0; }
+  0% {
+    background-position: 0 0;
+  }
+
+  50% {
+    background-position: 400% 0;
+  }
+
+  100% {
+    background-position: 0 0;
+  }
 }
 
 /* Scrollbar styling */
@@ -150,7 +163,7 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Grid pattern background */
 .grid-pattern {
-  background-image: 
+  background-image:
     linear-gradient(rgba(0, 240, 255, 0.1) 1px, transparent 1px),
     linear-gradient(90deg, rgba(0, 240, 255, 0.1) 1px, transparent 1px);
   background-size: 50px 50px;
@@ -158,7 +171,7 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Circuit pattern */
 .circuit-pattern {
-  background-image: 
+  background-image:
     radial-gradient(circle at 20% 50%, rgba(0, 240, 255, 0.1) 1px, transparent 1px),
     radial-gradient(circle at 80% 50%, rgba(176, 0, 255, 0.1) 1px, transparent 1px);
   background-size: 100px 100px;
@@ -175,8 +188,13 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 /* Smooth transitions */
@@ -264,6 +282,7 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Reduced motion for accessibility */
 @media (prefers-reduced-motion: reduce) {
+
   *,
   *::before,
   *::after {
