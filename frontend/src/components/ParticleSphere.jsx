@@ -48,7 +48,7 @@ const Sphere = (props) => {
             <Points ref={ref} positions={sphere} stride={3} frustumCulled={false} {...props}>
                 <PointMaterial
                     transparent
-                    color="#a855f7" // Purple-500
+                    color="#00f3ff" // Neon Blue
                     size={0.005}
                     sizeAttenuation={true}
                     depthWrite={false}

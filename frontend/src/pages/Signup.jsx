@@ -55,9 +55,9 @@ const Signup = () => {
                 transition={{ duration: 0.5 }}
                 className="relative z-10 w-full max-w-md px-4"
             >
-                <div className="backdrop-blur-md bg-black/30 border border-white/10 rounded-2xl p-8 shadow-2xl shadow-purple-500/20">
+                <div className="backdrop-blur-md bg-black/30 border border-white/10 rounded-2xl p-8 shadow-2xl shadow-cyan-500/20">
                     <div className="text-center mb-8">
-                        <h1 className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600 mb-2">
+                        <h1 className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-600 mb-2">
                             Create Account
                         </h1>
                         <p className="text-gray-400 text-sm">Join the Robotics Club community</p>
@@ -82,7 +82,7 @@ const Signup = () => {
                                 value={formData.username}
                                 onChange={handleChange}
                                 required
-                                className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500 transition-all text-white placeholder-gray-500"
+                                className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 transition-all text-white placeholder-gray-500"
                                 placeholder="johndoe"
                             />
                         </div>
@@ -95,7 +95,7 @@ const Signup = () => {
                                 value={formData.email}
                                 onChange={handleChange}
                                 required
-                                className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500 transition-all text-white placeholder-gray-500"
+                                className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 transition-all text-white placeholder-gray-500"
                                 placeholder="name@example.com"
                             />
                         </div>
@@ -108,7 +108,7 @@ const Signup = () => {
                                 value={formData.password}
                                 onChange={handleChange}
                                 required
-                                className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500 transition-all text-white placeholder-gray-500"
+                                className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 transition-all text-white placeholder-gray-500"
                                 placeholder="••••••••"
                             />
                         </div>
@@ -121,7 +121,7 @@ const Signup = () => {
                                 value={formData.confirmPassword}
                                 onChange={handleChange}
                                 required
-                                className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500 transition-all text-white placeholder-gray-500"
+                                className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 transition-all text-white placeholder-gray-500"
                                 placeholder="••••••••"
                             />
                         </div>
@@ -129,7 +129,7 @@ const Signup = () => {
                         <button
                             type="submit"
                             disabled={loading}
-                            className="w-full py-3.5 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-500 hover:to-pink-500 text-white font-semibold rounded-xl transition-all transform hover:scale-[1.02] active:scale-[0.98] shadow-lg shadow-purple-500/25 disabled:opacity-50 disabled:cursor-not-allowed mt-4"
+                            className="w-full py-3.5 bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 text-white font-semibold rounded-xl transition-all transform hover:scale-[1.02] active:scale-[0.98] shadow-lg shadow-cyan-500/25 disabled:opacity-50 disabled:cursor-not-allowed mt-4"
                         >
                             {loading ? 'Creating Account...' : 'Sign Up'}
                         </button>
@@ -138,7 +138,7 @@ const Signup = () => {
                     <div className="mt-8 text-center">
                         <p className="text-gray-400 text-sm">
                             Already have an account?{' '}
-                            <Link to="/login" className="text-purple-400 hover:text-purple-300 font-medium transition-colors">
+                            <Link to="/login" className="text-cyan-400 hover:text-cyan-300 font-medium transition-colors">
                                 Sign in
                             </Link>
                         </p>
